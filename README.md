@@ -1,4 +1,4 @@
-# 🛍️ Zenlify - E-Commerce Web Application
+# 🛍️ Zenlify - ECommerce Web Application
 
 **Zenlify** is a modern and scalable e-commerce web application built with the MERN stack and Vite. It enables users to browse products, register/login, manage cart items, and complete the checkout process with a smooth user experience and intuitive interface.
 
@@ -6,9 +6,9 @@
 
 ## 📸 Screenshots
 
-<!-- Add screenshots here if you have them -->
-<!-- ![Home Page](screenshots/home.png) -->
-<!-- ![Product Page](screenshots/product.png) -->
+
+[Home Page](screenshots/home.png)
+[Product Page](screenshots/product.png)
 
 ---
 
