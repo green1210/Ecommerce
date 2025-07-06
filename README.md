@@ -6,9 +6,13 @@
 
 ## 📸 Screenshots
 
+### 🏠 Home Page
 
-[Home Page](screenshots/home.png)
-[Product Page](screenshots/product.png)
+![Home Page](./screenshots/home.png)
+
+### 🛒 Product Page
+
+![Product Page](./screenshots/product.png)
 
 ---
 
