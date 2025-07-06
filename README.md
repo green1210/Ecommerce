@@ -1,6 +1,3 @@
-# Save the generated README content into a proper markdown file
-
-readme_content = """
 # 🛍️ Zenlify - ECommerce Web Application
 
 **Zenlify** is a modern and scalable e-commerce web application built with the **MERN stack** (MongoDB, Express.js, React, Node.js) and **Vite**. It enables users to browse products, register/login, manage cart items, and complete the checkout process with a smooth user experience and intuitive interface.
@@ -37,8 +34,8 @@ readme_content = """
 ### 🔹 Backend
 - Node.js
 - Express.js
-- MongoDB *(future scope)*
-- JWT Authentication *(future scope)*
+- MongoDB
+- JWT Authentication
 
 ---
 
