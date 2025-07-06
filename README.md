@@ -16,9 +16,10 @@
 
 ---
 
-## 🚀 Live Demo
+## 🔗 Live Demo
 
-> 🧪 Coming Soon...
+**🌐 [Live Project on Vercel](https://zenlify.vercel.app/)**  
+_Deployed with Vercel for global accessibility and blazing-fast performance._
 
 ---
 
@@ -101,7 +102,15 @@ E_commerce/
 ### Clone the repository
 
 ```bash
+
 git clone https://github.com/yourusername/zenlify.git
+
+# Navigate to the project
 cd zenlify
+
+# Install dependencies
 npm install
+
+# Run the development server
 npm run dev
+
