@@ -13,6 +13,7 @@ const Header = () => {
   
   const { totalQuantity } = useSelector((state) => state.cart);
   const { isAuthenticated } = useSelector((state) => state.auth);
+  const { cartOpen } = useSelector((state) => state.ui);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -37,7 +38,13 @@ const Header = () => {
     setSearchQuery(e.target.value);
   };
 
-  const openCart = () => dispatch(toggleCart());
+  const handleCartClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('Cart button clicked, current cartOpen state:', cartOpen);
+    dispatch(toggleCart());
+  };
+
   const openMobileMenu = () => dispatch(toggleMobileMenu());
 
   const navigationLinks = [
@@ -139,7 +146,7 @@ const Header = () => {
             <motion.button 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={openCart}
+              onClick={handleCartClick}
               className="relative p-2 md:p-3 rounded-xl md:rounded-2xl hover:bg-slate-100 transition-colors group shadow-lg bg-white/80 backdrop-blur-sm"
               aria-label="Shopping cart"
             >
@@ -185,7 +192,7 @@ const Header = () => {
             <motion.button 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={openCart}
+              onClick={handleCartClick}
               className="relative p-2 rounded-xl bg-white/80 backdrop-blur-sm shadow-lg"
               aria-label="Shopping cart"
             >
