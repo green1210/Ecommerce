@@ -37,9 +37,18 @@ const CartSidebar = ({ isOpen }) => {
     dispatch(removeEntireItem(id));
   };
 
-  const handleCheckoutClick = () => {
+  const handleCheckoutClick = (e) => {
+    e.preventDefault();
+    // Close the cart first
     dispatch(closeCart());
-    navigate('/checkout');
+    // Small delay to ensure cart closes before navigation
+    setTimeout(() => {
+      navigate('/checkout');
+    }, 100);
+  };
+
+  const handleContinueShoppingClick = () => {
+    dispatch(closeCart());
   };
   
   const cartVariants = {
@@ -121,7 +130,7 @@ const CartSidebar = ({ isOpen }) => {
                   <p className="text-slate-500 mb-6 md:mb-8 text-sm md:text-base">
                     Discover amazing products and add them to your cart
                   </p>
-                  <Button onClick={handleCloseCart} className="w-full max-w-xs">
+                  <Button onClick={handleContinueShoppingClick} className="w-full max-w-xs">
                     Continue Shopping
                   </Button>
                 </div>
@@ -163,7 +172,7 @@ const CartSidebar = ({ isOpen }) => {
                     </Button>
                     <Button 
                       variant="outline" 
-                      onClick={handleCloseCart} 
+                      onClick={handleContinueShoppingClick} 
                       className="w-full text-sm md:text-base py-2 md:py-3"
                     >
                       Continue Shopping
