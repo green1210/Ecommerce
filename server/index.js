@@ -39,14 +39,14 @@ async function connectToDatabase() {
     client = new MongoClient(process.env.MONGODB_URI);
     await client.connect();
     db = client.db(process.env.MONGODB_DB_NAME || 'zenlify');
-    console.log('✅ Connected to MongoDB successfully');
+    console.log(' Connected to MongoDB successfully');
     
     // Create indexes for better performance
     await db.collection('users').createIndex({ email: 1 }, { unique: true });
-    console.log('✅ Database indexes created');
+    console.log(' Database indexes created');
   } catch (error) {
-    console.error('❌ MongoDB connection error:', error.message);
-    console.log('⚠️  Continuing with fallback authentication (in-memory)');
+    console.error(' MongoDB connection error:', error.message);
+    console.log(' Continuing with fallback authentication (in-memory)');
     // Don't throw error, continue with fallback
   }
 }
