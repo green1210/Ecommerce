@@ -16,6 +16,7 @@ const uiSlice = createSlice({
   reducers: {
     toggleMobileMenu(state) {
       state.mobileMenuOpen = !state.mobileMenuOpen;
+      // Close cart when opening mobile menu
       if (state.mobileMenuOpen && state.cartOpen) {
         state.cartOpen = false;
       }
@@ -26,13 +27,17 @@ const uiSlice = createSlice({
     },
     
     toggleCart(state) {
+      console.log('toggleCart called, current state:', state.cartOpen);
       state.cartOpen = !state.cartOpen;
+      console.log('toggleCart new state:', state.cartOpen);
+      // Close mobile menu when opening cart
       if (state.cartOpen && state.mobileMenuOpen) {
         state.mobileMenuOpen = false;
       }
     },
     
     closeCart(state) {
+      console.log('closeCart called');
       state.cartOpen = false;
     },
     
