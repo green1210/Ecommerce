@@ -17,16 +17,18 @@ app.use(cors({
 }));
 app.use(express.json());
 
-
+// MongoDB connection for authentication only
 let db;
 let client;
 
 async function connectToDatabase() {
+  // Skip MongoDB connection if explicitly disabled
   if (process.env.SKIP_MONGODB === 'true') {
     console.log('Skipping MongoDB connection (disabled via SKIP_MONGODB)');
     return;
   }
 
+  // Check if MONGODB_URI is defined
   if (!process.env.MONGODB_URI) {
     console.log('MONGODB_URI not defined, using fallback authentication');
     return;
@@ -36,18 +38,20 @@ async function connectToDatabase() {
     console.log('Connecting to MongoDB for authentication...');
     client = new MongoClient(process.env.MONGODB_URI);
     await client.connect();
-    db = client.db(process.env.MONGODB_DB_NAME || 'Zenlify');
-    console.log('Connected to MongoDB successfully');
+    db = client.db(process.env.MONGODB_DB_NAME || 'zenlify');
+    console.log('✅ Connected to MongoDB successfully');
     
+    // Create indexes for better performance
     await db.collection('users').createIndex({ email: 1 }, { unique: true });
-    console.log('Database indexes created');
+    console.log('✅ Database indexes created');
   } catch (error) {
-    console.error('MongoDB connection error:', error.message);
-    console.log('Continuing with fallback authentication (in-memory)');
-   
+    console.error('❌ MongoDB connection error:', error.message);
+    console.log('⚠️  Continuing with fallback authentication (in-memory)');
+    // Don't throw error, continue with fallback
   }
 }
 
+// Make db available to routes
 app.use((req, res, next) => {
   req.db = db;
   next();
@@ -70,7 +74,7 @@ app.get('/', (req, res) => {
 // API root route
 app.get('/api', (req, res) => {
   res.json({ 
-    message: 'LuxeCommerce API',
+    message: 'Zenlify API',
     database: db ? 'MongoDB Connected' : 'Fallback Mode',
     endpoints: {
       auth: '/api/auth (MongoDB)',
@@ -119,11 +123,11 @@ app.use('*', (req, res) => {
 // Start server
 connectToDatabase().then(() => {
   app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server running on port ${PORT}`);
-    console.log(`Health check: http://localhost:${PORT}/api/health`);
-    console.log(`API docs: http://localhost:${PORT}/api`);
-    console.log(`Authentication: ${db ? 'MongoDB' : 'Fallback mode'}`);
-    console.log(`Products: External API (FakeStore)`);
+    console.log(` Server running on port ${PORT}`);
+    console.log(` Health check: http://localhost:${PORT}/api/health`);
+    console.log(` API docs: http://localhost:${PORT}/api`);
+    console.log(` Authentication: ${db ? 'MongoDB' : 'Fallback mode'}`);
+    console.log(` Products: External API (FakeStore)`);
   });
 });
 
